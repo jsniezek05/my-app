@@ -11,7 +11,7 @@ router.route("/add").post((req, res) => {
 
 
 		const title = req.body.title;
-		const date = Date.parse(req.body.date);
+		//const date = Date.parse(req.body.date);
 		const description = req.body.description;
 		const content = req.body.content;
 
@@ -19,7 +19,7 @@ router.route("/add").post((req, res) => {
 
 	const newPost = new Post({
 		title,
-		date,
+		//date,
 		description,
 		content,
 	});
@@ -27,8 +27,8 @@ router.route("/add").post((req, res) => {
 
 
 	newPost.save()
-		.then(() => res.json("Uploaded"))
-		.catch(err => res.status(400).json('Error: ' + err));
+	.then(() => res.json("Uploaded"))
+	.catch(err => res.status(400).json('Error: ' + err));
 });
 
 module.exports = router;
