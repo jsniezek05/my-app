@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Navbar from "./components/navbar.component.js";
 import Home from "./components/home.component.js";
@@ -12,11 +14,12 @@ function App() {
 
 
   <Router>  
-    <Navbar />
-    <br/>
-    <Route exact path="/" component={Home} />
-    <Route path="/edit/:id" component={EditPost} />
-    <Route path="/create" component={Create} />
+    <div className="container">
+      <Navbar />
+      <Route exact path="/" component={Home} />
+      <Route path="/edit/:id" component={EditPost} />
+      <Route path="/create" component={Create} />
+    </div>
   </Router>
 
   );

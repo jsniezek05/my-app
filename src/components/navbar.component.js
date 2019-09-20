@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom'
 
 
@@ -7,13 +7,9 @@ class Navbar extends React.Component {
     return (
       <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
         <Link to="/" className="navbar-brand">MyBlog</Link>
-        <div className="collapse navbar-collapse">
-          <ul class="nav nav-tabs">
-            <li role="presentation">
-              <Link to="/create">Create Post</Link>
-            </li>
-          </ul>
-        </div>
+        <Link to="/create">
+          <button type="button" className="btn btn-default navbar-btn">New Post</button>
+        </Link>
       </nav>
 
       )
