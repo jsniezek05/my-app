@@ -1,0 +1,29 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "Taylor814",
+    "database": "articles",
+    "host": "localhost",
+    "port":5000,
+    "dialect": "postgres",
+    "operatorsAliases": "false"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "Taylor814",
+    "database": "articles",
+    "host": "localhost",
+    "port":5000,
+    "dialect": "postgres",
+    "operatorsAliases": "false"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "Taylor814",
+    "database": "articles",
+    "host": "localhost",
+    "port":5000,
+    "dialect": "postgres",
+    "operatorsAliases": "false"
+  }
+}

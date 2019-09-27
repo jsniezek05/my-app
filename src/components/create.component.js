@@ -1,7 +1,7 @@
 
 import React from 'react';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
+// import DatePicker from 'react-datepicker';
+// import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 
 class Create extends React.Component {
@@ -11,14 +11,13 @@ class Create extends React.Component {
 
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeDescription = this.onChangeDescription.bind(this);
-    this.onChangeDate = this.onChangeDate.bind(this);
+
     this.onChangeContent = this.onChangeContent.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       title: '',
       description: '',
-      date: new Date(),
       content: ''
     }
   }
@@ -33,28 +32,29 @@ class Create extends React.Component {
       description: e.target.value
     });
   }
-  onChangeDate(date){
-    this.setState({
-      date: date
-    });
-  }
+  // onChangeDate(date){
+  //   this.setState({
+  //     date: date
+  //   });
+  // }
   onChangeContent(e){
     this.setState({
       content: e.target.value
     });
   }
+
   onSubmit(e) {
     e.preventDefault();
-    const post = {
+    const article = {
       title: this.state.title,
       description: this.state.description,
-      date: this.state.date,
+      // date: this.state.date,
       content: this.state.content
     }
 
-    console.log(post);
+    console.log(article);
 
-    axios.post('http://localhost:5000/post/add', post)
+    axios.post('http://localhost:5001/article/', article)
       .then(res => console.log(res.data));
 
     window.location = "/";
@@ -65,7 +65,7 @@ class Create extends React.Component {
   render() {
     return (
     	<div>
-        <h3>Create New Post</h3>
+        <h3>Create New Article</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Title</label>
@@ -84,15 +84,6 @@ class Create extends React.Component {
               onChange={this.onChangeDescription} />
           </div>
           <div className="form-group">    
-            <label>Date</label>
-            <div>
-              <DatePicker
-                selected={this.state.date}
-                onChange={this.onChangeDate}
-              />
-            </div> 
-          </div>
-          <div className="form-group">    
             <label>Content</label>
             <input type="text"
               required 
@@ -101,7 +92,7 @@ class Create extends React.Component {
               onChange={this.onChangeContent} />
           </div>  
       		<div className="form-group">	
-            <input type="submit" value="Create New Post" className="btn btn-primary" />
+            <input type="submit" value="Create New article" className="btn btn-primary" />
           </div>
 
         </form>
