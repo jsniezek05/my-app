@@ -1,11 +1,11 @@
 const Sequelize = require('sequelize');
 
 
-module.exports = new Sequelize('articles', 'postgres', 'password' {
+module.exports = new Sequelize('articles', 'postgres', 'password', {
   host: 'localhost',
   port: 5000,
   dialect: 'postgres',
-  operatorsAlieases: false,
+  operatorsAliases: false,
 
   pool: {
   	max: 5,
