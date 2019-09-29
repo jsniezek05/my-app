@@ -1,29 +1,34 @@
 const express = require('express');
+const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
+const path = require('path');
 const cors = require('cors');
-const mongoose = require('mongoose');
 
 
+const db = require('./config/database');
 
-require('dotenv').config();
+
+db.authenticate()
+	.then(() => console.log('Database connected...'))
+	.catch(err => console.log('Error: ' + err))
+
 
 const app = express();
-const port = process.env.PORT || 5000;
 
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser());
 
-const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true}
-);
-const connection = mongoose.connection;
-connection.once('open', () => {
-	console.log("MongoDB database connection established successfully");
-});
 
-const postRouter = require('./routes/post');
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.set('view engine', 'handlebars');
 
-app.use('/post', postRouter);
 
-app.listen(port, () => {
-	console.log(`Server is running on port:  ${port}`);
-});
+app.get('/', (req,res) => res.send('STUFF'));
+
+
+app.use('/article', require('./routes/articles'));
+
+
+const PORT = process.env.PORT || 5001;
+
+app.listen(PORT, console.log('Server started on port: ' + PORT));

@@ -10,6 +10,9 @@ class Navbar extends React.Component {
         <Link to="/create">
           <button type="button" className="btn btn-default navbar-btn">New Post</button>
         </Link>
+        <form className="form-inline mr-auto">
+          <input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+        </form>
       </nav>
 
       )

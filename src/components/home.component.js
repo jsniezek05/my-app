@@ -2,19 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 
-const Post = props => (
+const Article = props => (
   <div className="panel panel-default">
     <div className="panel-heading">
-      <h1>{props.post.title}</h1>
-      <p>{props.post.description}</p>
-      <p>{props.post.date.substring(0,10)}</p>
+      <h1>{props.article.title}</h1>
+      <p>{props.article.description}</p>
+      <p>{props.article.date}</p>
     </div>
     <div className="panel-body">
-      {props.post.content}
+      {props.article.content}
       <br />
       <br />
-      <Link to={"/edit/"+props.post._id}>Edit</Link> | 
-      <Link to="/" onClick={() => {props.deletePost(props.post._id)}}> Delete </Link>
+      <Link to={"/edit/" + props.article.id}>Edit</Link> | 
+      <Link to="/" onClick={() => {props.deletePost(props.article.id)}}> Delete </Link>
     </div>
   </div>
 )
@@ -24,40 +24,42 @@ class Home extends React.Component {
   constructor(props){
     super (props);
 
-    this.deletePost = this.deletePost.bind(this);
+    this.deleteArticle = this.deleteArticle.bind(this);
 
-    this.state = {posts:[]};
+    this.state = {articles:[]};
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/post/')
+    axios.get('http://localhost:5001/article')
       .then(response => {
-        this.setState({ posts: response.data })
+        this.setState(
+          { articles: response.data }
+          )
       })
       .catch((error) => {
         console.log(error);
       })
   }
 
-  deletePost(id) {
-    axios.delete('http://localhost:5000/post/'+id)
+  deleteArticle(id) {
+    axios.delete('http://localhost:5001/article/'+id)
       .then(res => console.log(res.data));
 
     this.setState({
-      posts: this.state.posts.filter(el => el._id !== id)
+      articles: this.state.articles.filter(el => el.id !== id)
     })
   }
 
-  postList(){
-    return this.state.posts.map(currentpost => {
-      return <Post post={currentpost} deletePost={this.deletePost} key={currentpost._id} />;
+  postArticle(){
+    return this.state.articles.map(currentarticle => {
+      return <Article article={currentarticle} deletePost={this.deleteArticle} key={currentarticle.id} />;
     })
   }
 
   render() {
     return (
       <div>
-        { this.postList() }
+        { this.postArticle() }
       </div>
       )
   }
