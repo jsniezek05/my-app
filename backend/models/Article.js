@@ -17,7 +17,7 @@ const Article = db.define('articles', {
 
 
   Article.associate = function(models) {
-    // associations can be defined here
+   
   };
 
 

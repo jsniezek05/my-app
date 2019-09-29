@@ -7,4 +7,5 @@
     "port":5000,
     "dialect": "postgres",
     "operatorsAliases": "false"
+	}
 }

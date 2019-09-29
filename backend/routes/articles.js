@@ -7,7 +7,7 @@ router.get('/', ( req, res ) =>
 	Article.findAll({ order: [['updatedAt', 'DESC']] })
 		.then(articles => {
 			console.log(articles);
-			res.send(articles);
+			res.json(articles);
 		})
 		.catch(err => console.log(err))
 	);
@@ -15,15 +15,14 @@ router.get('/', ( req, res ) =>
 router.get('/:id', ( req, res ) => 
 	Article.findByPk(req.params.id)
 		.then(article => res.json(article))
-		.catch(err => res.status(400).json('Error: ' + err))
-			);
+		.catch(err => res.status(400).json('Error: ' + err)));
 
 router.post("/", (req, res) => 
     Article.create({
       title: req.body.title,
       description: req.body.description,
       content: req.body.content
-    }).then( (result) => res.json(result) )
+    }).then( result => res.json(result) )
   );
 
 router.put( "/:id", (req, res) =>
@@ -36,7 +35,7 @@ router.put( "/:id", (req, res) =>
       where: {
         id: req.params.id
       }
-    }).then( (result) => res.json(result) )
+    }).then( result => res.json(result) )
   );
 
   router.delete( "/:id", (req, res) =>
