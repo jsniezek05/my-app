@@ -23,7 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 
-
 backend/config/config.js
 backend/config/database.js
 
@@ -31,3 +30,4 @@ backend/config/database.js
 /config
 
 .idea
+
