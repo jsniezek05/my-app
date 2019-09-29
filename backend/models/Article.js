@@ -12,11 +12,7 @@ const Article = db.define('articles', {
   },
   content: {
     type: Sequelize.STRING
-  },
-  title: {
-    type: Sequelize.STRING
-  },
-
+  }
 });
 
 
